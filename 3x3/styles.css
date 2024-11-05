@@ -3,7 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: Arial, sans-serif;
+
     background-color: #f0f0f0;
 }
 .grid {
@@ -19,8 +19,8 @@ body {
     height: 100px;
     font-size: 24px;
     background-color: #fff;
-    border: 2px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid black;
+
 }
 button {
     margin-top: 20px;
