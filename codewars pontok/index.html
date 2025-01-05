@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <title>CodeWars</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="top-right">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+        <span>Light Mode</span>
+    </div>
+
+    <div class="middle">
+        <input id="fetchData" type="text" placeholder="Type something here...">
+        <button onclick="fetchData()">Submit</button>
+    </div>
+
+    <div id="card-container">
+        
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+
+        themeToggle.addEventListener('change', () => {
+            document.documentElement.setAttribute('data-theme', themeToggle.checked ? 'dark' : '');
+        });
+    </script>
+</body>
+</html>
