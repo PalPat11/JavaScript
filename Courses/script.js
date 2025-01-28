@@ -1,5 +1,5 @@
 const apiUrl = "https://vvri.pythonanywhere.com/api/courses";
-const diakApi = "https://vvri.pythonanywhere.com/api/students"
+const diakApi = "https://vvri.pythonanywhere.com/api/students";
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -41,7 +41,7 @@ async function fetchCourses() {
   }
 }
 
-// Diákok lekérése
+
 async function fetchStudents() {
   try {
     const response = await fetch(diakApi); 
@@ -86,14 +86,14 @@ function createCourse() {
 
 function createStudent() {
   const name = prompt("Diák neve:");
-  const email = prompt("Diák email címe:");
-  if (name && email) {
+  const courseId = prompt("Új diák kurzusa:");
+  if (name && courseId) {
     fetch(diakApi, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name, email })
+      body: JSON.stringify({ name, courseId })
     }).then(response => {
       if (response.ok) {
         fetchStudents();
@@ -128,14 +128,14 @@ function editCourse(courseId) {
 
 function editStudent(studentId) {
   const name = prompt("Új diák neve:");
-  const email = prompt("Új diák email címe:");
-  if (name && email) {
+  const courseId = prompt("Új diák kurzusa:");
+  if (name && courseId) {
     fetch(`${diakApi}/${studentId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name, email })
+      body: JSON.stringify({ name, courseId })
     }).then(response => {
       if (response.ok) {
         fetchStudents();
@@ -146,7 +146,6 @@ function editStudent(studentId) {
   }
 }
 
-// Kurzus törlése
 function deleteCourse(courseId) {
   if (confirm("Biztosan törölni szeretnéd ezt a kurzust?")) {
     fetch(`${apiUrl}/${courseId}`, {
