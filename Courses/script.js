@@ -1,25 +1,26 @@
-const apiUrl = "https://vvri.pythonanywhere.com/api/courses"; // API alap URL
+const apiUrl = "https://vvri.pythonanywhere.com/api/courses";
+const diakApi = "https://vvri.pythonanywhere.com/api/students"
 
-// Az oldal betöltésekor megjelenítjük a kurzusokat vagy diákokat
+
 document.addEventListener('DOMContentLoaded', function() {
-  showCourses(); // Alapértelmezetten a kurzusok jelennek meg
+  showCourses(); 
 });
 
-// Kurzusok megjelenítése
+
 function showCourses() {
   document.getElementById('courses-section').style.display = 'block';
   document.getElementById('students-section').style.display = 'none';
   fetchCourses();
 }
 
-// Diákok megjelenítése
+
 function showStudents() {
   document.getElementById('students-section').style.display = 'block';
   document.getElementById('courses-section').style.display = 'none';
   fetchStudents();
 }
 
-// Kurzusok lekérése
+
 async function fetchCourses() {
   try {
     const response = await fetch(apiUrl);
@@ -43,7 +44,7 @@ async function fetchCourses() {
 // Diákok lekérése
 async function fetchStudents() {
   try {
-    const response = await fetch(apiUrl); // Diákok API URL-jét is be kell állítani, ha külön van
+    const response = await fetch(diakApi); 
     const students = await response.json();
     const studentList = document.getElementById('student-list');
     studentList.innerHTML = '';
@@ -61,7 +62,7 @@ async function fetchStudents() {
   }
 }
 
-// Új kurzus létrehozása
+
 function createCourse() {
   const name = prompt("Kurzus neve:");
   const description = prompt("Kurzus leírása:");
@@ -82,12 +83,12 @@ function createCourse() {
   }
 }
 
-// Új diák létrehozása
+
 function createStudent() {
   const name = prompt("Diák neve:");
   const email = prompt("Diák email címe:");
   if (name && email) {
-    fetch(apiUrl, {  // Ez külön URL-t igényelhet diákokhoz
+    fetch(diakApi, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -103,7 +104,7 @@ function createStudent() {
   }
 }
 
-// Kurzus szerkesztése
+
 function editCourse(courseId) {
   const name = prompt("Új kurzus neve:");
   const description = prompt("Új kurzus leírása:");
@@ -124,12 +125,12 @@ function editCourse(courseId) {
   }
 }
 
-// Diák szerkesztése
+
 function editStudent(studentId) {
   const name = prompt("Új diák neve:");
   const email = prompt("Új diák email címe:");
   if (name && email) {
-    fetch(`${apiUrl}/${studentId}`, {
+    fetch(`${diakApi}/${studentId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -163,7 +164,7 @@ function deleteCourse(courseId) {
 // Diák törlése
 function deleteStudent(studentId) {
   if (confirm("Biztosan törölni szeretnéd ezt a diákot?")) {
-    fetch(`${apiUrl}/${studentId}`, {
+    fetch(`${diakApi}/${studentId}`, {
       method: 'DELETE'
     }).then(response => {
       if (response.ok) {
