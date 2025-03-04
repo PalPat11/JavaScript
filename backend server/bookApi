@@ -1,0 +1,99 @@
+import express from "express";
+
+const app = express();
+
+app.use(express.json());
+
+const data = [
+    {
+      "id":1,
+      "author": "Mór Jókai",
+      "title": "The Man with the Golden Touch",
+      "year": 1872
+    },
+    {
+        "id":2,
+      "author": "George Orwell",
+      "title": "1984",
+      "year": 1949
+    },
+    {
+        "id":3,
+      "author": "Agatha Christie",
+      "title": "And Then There Were None",
+      "year": 1939
+    },
+    {
+        "id":4,
+      "author": "Kálmán Mikszáth",
+      "title": "St. Peter's Umbrella",
+      "year": 1895
+    },
+    {
+        "id":5,
+      "author": "J.R.R. Tolkien",
+      "title": "The Lord of the Rings",
+      "year": 1954
+    }
+  ]
+  
+
+
+app.get("/books", (req,res)=>{
+    res.json(data);
+})
+
+app.get("/books/:id", (req,res)=>{
+    const userId = req.params.id
+    const resp = data.filter(y=>y.id==userId);
+    if(resp.length==0){
+    res.json({"message":"not Found"});
+
+    }
+    else{
+        res.json(resp);
+        
+    }
+
+})
+
+
+app.post("/books", (req, res)=>{
+    data.push(req.body)
+    res.json(req.body)
+})
+
+app.put("/books/:id", (req,res)=>{
+    const userId = req.params.id
+    if(data[userId-1]!=null){
+    data[userId-1] = req.body;
+
+        res.json(req.body)
+
+    }
+    else{
+        res.json({"message": "Nem találtuk"})
+    }
+})
+
+
+app.delete("/books/:id", (req, res)=>{
+
+    const userId = req.params.id
+    if(data[userId-1]!=null){
+        data[userId-1] = req.body;
+    
+        data.filter(y=>y.id!=userId);
+        res.json({"message": "Deleted succesfully"})
+    
+        }
+        else{
+            res.json({"message": "Nem találtuk"})
+        }
+
+})
+
+const PORT = 3000;
+app.listen(PORT, ()=>{
+    console.log(`runs on ${PORT}`)
+})
