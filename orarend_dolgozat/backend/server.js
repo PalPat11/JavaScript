@@ -5,15 +5,13 @@ const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3");
 const path = require("path");
 
-// Express app
 const app = express();
 const PORT = 3000;
 
-// CORS engedélyezés
+
 app.use(cors());
 app.use(bodyParser.json());
 
-// SQLite adatbázis inicializálása
 const db = new sqlite3.Database(path.resolve(__dirname, 'schedule.db'), (err) => {
   if (err) {
     console.error('Hiba történt az adatbázis megnyitásakor:', err.message);
@@ -22,7 +20,6 @@ const db = new sqlite3.Database(path.resolve(__dirname, 'schedule.db'), (err) =>
   }
 });
 
-// Az adatbázis táblájának létrehozása (ha még nem létezik)
 db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS schedule (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,7 +29,6 @@ db.serialize(() => {
   )`);
 });
 
-// Lekérés
 app.get("/api/schedule", (req, res) => {
   const query = `SELECT * FROM schedule ORDER BY day, hour`;
 
@@ -51,7 +47,6 @@ app.get("/api/schedule", (req, res) => {
   });
 });
 
-// Új óra hozzáadása
 app.post("/api/schedule", (req, res) => {
   const { day, hour, subject } = req.body;
 
@@ -64,7 +59,6 @@ app.post("/api/schedule", (req, res) => {
   });
 });
 
-// Óra törlése
 app.delete("/api/schedule/:id", (req, res) => {
   const { id } = req.params;
 
@@ -82,8 +76,6 @@ app.delete("/api/schedule/:id", (req, res) => {
 
 
 
-
-// Indítja a szervert
 app.listen(PORT, () => {
   console.log(`Szerver fut: http://localhost:${PORT}`);
 });
