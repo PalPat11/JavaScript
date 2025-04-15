@@ -1,0 +1,114 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #f0f2f5;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+  
+  /* Form styles */
+  form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  
+  form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  
+  form button {
+    grid-column: span 2;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #2e86de;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  form button:hover {
+    background-color: #1b4f72;
+  }
+  
+  /* Album list styles */
+  #albumList {
+    display: grid;
+    gap: 20px;
+  }
+  
+  .album-card {
+    background: #fafafa;
+    padding: 20px;
+    border-left: 5px solid #2e86de;
+    border-bottom: 5px solid #2e86de;
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .album-info {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .album-info h3 {
+    margin: 0 0 5px;
+    font-size: 18px;
+    color: #2c3e50;
+  }
+  
+  .album-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Action buttons */
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .actions button {
+    background: #e1e1e1;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease;
+  }
+  
+  .actions button:hover {
+    background: #d0d0d0;
+  }
+  

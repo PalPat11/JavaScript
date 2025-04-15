@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zenekarok Albumai</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Zenekarok Albumai</h1>
+
+    <form id="albumForm">
+      <input type="text" id="band" placeholder="Zenekar neve" required />
+      <input type="text" id="title" placeholder="Album címe" required />
+      <input type="number" id="year" placeholder="Megjelenés éve" required />
+      <input type="text" id="genre" placeholder="Műfaj" required />
+      <button type="submit">Hozzáadás</button>
+    </form>
+
+    <hr />
+
+    <h2>Album lista</h2>
+    <ul id="albumList"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
