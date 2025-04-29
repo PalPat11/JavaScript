@@ -21,7 +21,12 @@ async function fetchAndRender() {
 function renderGroupedTimetable(data) {
   list.innerHTML = "";
 
-  for (const day in data) {
+  const sortedDays = Object.keys(data).sort((a, b) => {
+    const dayOrder = ["Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek"];
+    return dayOrder.indexOf(a) - dayOrder.indexOf(b);
+  });
+
+  for (const day of sortedDays) {
     const dayHeader = document.createElement("h3");
     dayHeader.textContent = day;
     list.appendChild(dayHeader);
