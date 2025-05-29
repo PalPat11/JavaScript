@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Blog Kezelő</h1>
+    </header>
+
+    <section id="create-blog-section">
+        <h2>Posztoljon Blogot</h2>
+        <form id="create-blog-form">
+            <input type="text" id="author" placeholder="Szerző" required>
+            <input type="text" id="title" placeholder="Cím" required>
+            <input type="text" id="category" placeholder="Kategória" required>
+            <textarea id="content" placeholder="Tartalom" required></textarea>
+            <button type="submit">Blog Létrehozása</button>
+        </form>
+    </section>
+
+    <section id="edit-blog-section" style="display: none;">
+        <h2>Szerkesztés</h2>
+        <form id="edit-blog-form">
+            <input type="text" id="edit-author" placeholder="Szerző" required>
+            <input type="text" id="edit-title" placeholder="Cím" required>
+            <input type="text" id="edit-category" placeholder="Kategória" required>
+            <textarea id="edit-content" placeholder="Tartalom" required></textarea>
+            <button type="submit">Beküld</button>
+            <button type="button" id="cancel-edit-btn">Mégse</button>
+        </form>
+    </section>
+
+    <section id="blogs-section">
+        <h2>Blogok</h2>
+        <div id="blogs-list"></div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
