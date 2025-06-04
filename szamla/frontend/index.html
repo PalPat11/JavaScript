@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Számlakezelő rendszer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Számlakezelő rendszer</h1>
+
+  <section>
+    <h2>Felhasználók</h2>
+    <div id="user-form">
+      <input type="text" id="user-name" placeholder="Név">
+      <input type="text" id="user-address" placeholder="Cím">
+      <input type="text" id="user-tax" placeholder="Adószám">
+      <button onclick="createUser()">Új felhasználó</button>
+    </div>
+    <div id="user-list" class="list-container"></div>
+  </section>
+
+  <section>
+    <h2>Számlák</h2>
+    <div id="invoice-form">
+      <input type="number" id="inv-issuer-id" placeholder="Kibocsátó ID">
+      <input type="number" id="inv-customer-id" placeholder="Vevő ID">
+      <input type="text" id="inv-number" placeholder="Számlaszám">
+      <input type="date" id="inv-date">
+      <input type="date" id="inv-fulfillment">
+      <input type="date" id="inv-deadline">
+      <input type="number" id="inv-total" placeholder="Összeg">
+      <input type="number" id="inv-vat" placeholder="ÁFA">
+      <button onclick="createInvoice()">Új számla</button>
+    </div>
+    <div id="invoice-list" class="list-container"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
