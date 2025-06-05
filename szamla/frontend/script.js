@@ -124,6 +124,5 @@ async function deleteInvoice(id) {
   fetchInvoices();
 }
 
-// === INIT ===
 fetchUsers();
 fetchInvoices();
