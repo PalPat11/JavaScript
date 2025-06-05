@@ -2,7 +2,6 @@ import Database from "better-sqlite3";
 
 const db = new Database('./data/database.sqlite');
 
-// USERS
 db.prepare(`CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -10,7 +9,7 @@ db.prepare(`CREATE TABLE IF NOT EXISTS users (
     tax_number TEXT NOT NULL
 )`).run();
 
-// INVOICES
+
 db.prepare(`CREATE TABLE IF NOT EXISTS invoices (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     issuer_id INTEGER NOT NULL,
@@ -33,7 +32,7 @@ db.prepare(`CREATE TABLE IF NOT EXISTS invoices (
     FOREIGN KEY (customer_id) REFERENCES users(id)
 )`).run();
 
-// USERS
+
 export const getAllUsers = () => db.prepare(`SELECT * FROM users`).all();
 export const getUserById = (id) => db.prepare(`SELECT * FROM users WHERE id = ?`).get(id);
 export const createUser = (name, address, tax_number) =>
@@ -43,21 +42,21 @@ export const updateUser = (id, name, address, tax_number) =>
       .run(name, address, tax_number, id);
 export const deleteUser = (id) => db.prepare(`DELETE FROM users WHERE id = ?`).run(id);
 
-// INVOICES
+
 export const getAllInvoices = () => db.prepare(`SELECT * FROM invoices`).all();
 export const getInvoiceById = (id) => db.prepare(`SELECT * FROM invoices WHERE id = ?`).get(id);
 
-// Számla létrehozás validációval és redundáns adatokkal
+
 export const createInvoice = (
     issuer_id, customer_id, invoice_number, invoice_date,
     fulfillment_date, payment_deadline, total_amount, vat_amount
 ) => {
-    // Lekérjük az eladó és vevő adatait
+
     const issuer = getUserById(issuer_id);
     const customer = getUserById(customer_id);
     if (!issuer || !customer) throw new Error("Issuer or customer not found");
 
-    // Dátum validáció: payment_deadline <= invoice_date + 30 nap
+
     const invoiceDate = new Date(invoice_date);
     const paymentDeadline = new Date(payment_deadline);
     const maxDeadline = new Date(invoiceDate);
@@ -81,15 +80,12 @@ export const createInvoice = (
     );
 };
 
-// Számlát módosítani nem lehet, ezért nincs updateInvoice
-
-// Számlát törölni nem lehet, csak stornózni
 export const cancelInvoice = (id) => {
     const now = new Date().toISOString().slice(0, 10);
     return db.prepare(`UPDATE invoices SET is_cancelled = 1, cancelled_at = ? WHERE id = ?`).run(now, id);
 };
 
-// Törlés helyett csak stornózás van
+
 // export const deleteInvoice = (id) => db.prepare(`DELETE FROM invoices WHERE id = ?`).run(id);
 
 // for (const user of users) createUser(user.name, user.age)
