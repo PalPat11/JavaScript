@@ -1,6 +1,5 @@
 const apiUrl = 'http://localhost:3000';
 
-// === FELHASZNÁLÓK ===
 async function fetchUsers() {
   const res = await fetch(`${apiUrl}/users`);
   const users = await res.json();
@@ -52,7 +51,7 @@ async function deleteUser(id) {
   fetchUsers();
 }
 
-// === SZÁMLÁK ===
+
 async function fetchInvoices() {
     const res = await fetch(`${apiUrl}/invoices`);
     const invoices = await res.json();
@@ -77,11 +76,11 @@ async function fetchInvoices() {
     });
 }
 
-// Új: Számla szerkesztése
+
 async function updateInvoice(id, value, field) {
     const res = await fetch(`${apiUrl}/invoices/${id}`);
     const invoice = await res.json();
-    // Convert numeric fields
+
     if (['issuer_id', 'customer_id'].includes(field)) {
         invoice[field] = parseInt(value);
     } else if (['total_amount', 'vat_amount'].includes(field)) {
